@@ -1,0 +1,64 @@
+Jsp controller
+-------------------
+package com.demo.spring.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.demo.spring.dao.empDao;
+import com.demo.spring.model.Employee;
+
+@Controller
+public class logInController {
+	@Autowired
+	private empDao dao;
+	
+	@RequestMapping("/home")
+	public String form() {
+		return "submit";
+	}
+	
+	
+	
+	
+	/*
+	 * @GetMapping("/home") public ModelAndView home(){ ModelAndView mv = new
+	 * ModelAndView("submit.jsp"); return mv; }
+	 */
+
+	// add  employee
+	@PostMapping("/insert")
+	public String addEmployee( Employee emp) {
+		/* ModelAndView mv = new ModelAndView("submit"); */
+		 dao.save(emp);
+		 return "submit";
+	}
+	
+	/*
+	 * @Autowired private StudentService studentService ;
+	 * 
+	 * @GetMapping(value = "/students") public String index(ModelMap modelMap){
+	 * modelMap.put("students" , studentService.findAll()); return "index" ; }
+	 * 
+	 * @GetMapping(value = "/student/{id}") public String data(@PathVariable("id")
+	 * int id , ModelMap modelMap){ modelMap.put("students" ,
+	 * studentService.findById(id)) ;
+	 * System.out.println(studentService.findById(id));
+	 * 
+	 * return "studentbyid" ; }
+	 * 
+	 * @GetMapping(value = "/student") public String databyid(){ return "student" ;
+	 * } }
+	 */
+
+
+}
